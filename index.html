@@ -1,0 +1,1499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EduTech Institute – Transform Your Future</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0A1628;
+    --navy-mid: #122040;
+    --teal: #00C9B1;
+    --teal-dim: #00a693;
+    --gold: #F59E0B;
+    --white: #F8FAFC;
+    --slate: #64748B;
+    --slate-light: #94A3B8;
+    --card-bg: #111f38;
+    --border: rgba(255,255,255,0.07);
+    --font-display: 'Sora', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--navy);
+    color: var(--white);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 70px;
+    background: rgba(10,22,40,0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.4); }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--white);
+    text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .nav-logo span { color: var(--teal); }
+  .logo-dot {
+    width: 8px; height: 8px;
+    background: var(--teal);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100%{ opacity:1; transform:scale(1); }
+    50%{ opacity:0.5; transform:scale(1.4); }
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em;
+    color: var(--slate-light); text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  .nav-cta {
+    background: var(--teal); color: var(--navy) !important;
+    padding: 8px 20px; border-radius: 6px;
+    font-weight: 700 !important; font-size: 0.82rem !important;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+  .nav-cta:hover { background: #00e5cc !important; transform: translateY(-1px); }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    position: relative; overflow: hidden;
+    padding: 100px 5% 60px;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(135deg, #0A1628 0%, #0d2044 50%, #071220 100%);
+  }
+
+  /* Diagonal stripe signature element */
+  .hero-stripes {
+    position: absolute; inset: 0; z-index: 1;
+    overflow: hidden;
+  }
+  .hero-stripes::before {
+    content: '';
+    position: absolute;
+    top: -40%; right: -10%;
+    width: 70%; height: 180%;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(0,201,177,0.04) 40px,
+      rgba(0,201,177,0.04) 41px
+    );
+    transform: rotate(0deg);
+  }
+
+  .hero-glow {
+    position: absolute;
+    top: 20%; right: 8%;
+    width: 480px; height: 480px;
+    background: radial-gradient(circle, rgba(0,201,177,0.12) 0%, transparent 70%);
+    z-index: 1;
+    animation: glow-shift 8s ease-in-out infinite;
+  }
+  @keyframes glow-shift {
+    0%,100%{ transform: translate(0,0); }
+    50%{ transform: translate(-30px, 20px); }
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 680px;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 1.5rem;
+    background: rgba(0,201,177,0.1);
+    padding: 6px 14px; border-radius: 20px;
+    border: 1px solid rgba(0,201,177,0.2);
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 em { color: var(--teal); font-style: normal; }
+
+  .hero-sub {
+    font-size: 1.05rem; color: var(--slate-light);
+    margin-bottom: 2.5rem; max-width: 520px; line-height: 1.7;
+  }
+
+  .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 14px 32px; border-radius: 8px;
+    font-family: var(--font-display);
+    font-weight: 700; font-size: 0.95rem;
+    text-decoration: none; display: inline-block;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(245,158,11,0.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,158,11,0.4); }
+
+  .btn-outline {
+    border: 2px solid rgba(255,255,255,0.2); color: var(--white);
+    padding: 13px 32px; border-radius: 8px;
+    font-family: var(--font-display);
+    font-weight: 600; font-size: 0.95rem;
+    text-decoration: none; display: inline-block;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--teal); background: rgba(0,201,177,0.08); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; flex-wrap: wrap;
+  }
+  .stat-item { }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2rem; font-weight: 800; color: var(--white);
+    line-height: 1;
+  }
+  .stat-num span { color: var(--teal); }
+  .stat-label {
+    font-size: 0.78rem; color: var(--slate-light);
+    letter-spacing: 0.06em; text-transform: uppercase; margin-top: 4px;
+  }
+
+  .hero-image {
+    position: absolute; right: 0; bottom: 0; top: 0;
+    width: 45%; z-index: 2;
+    overflow: hidden;
+    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  .hero-image img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center top;
+    opacity: 0.35;
+    filter: saturate(0.6);
+  }
+
+  /* ── SECTIONS SHARED ── */
+  section { padding: 90px 5%; }
+  .section-eyebrow {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--teal);
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 800; letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    color: var(--slate-light); font-size: 1rem; max-width: 560px; line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* ── COURSES ── */
+  #courses { background: var(--navy-mid); }
+  .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+  }
+  .course-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.8rem;
+    transition: transform 0.25s, border-color 0.25s;
+    cursor: pointer;
+  }
+  .course-card:hover { transform: translateY(-4px); border-color: rgba(0,201,177,0.3); }
+  .course-card.open { border-color: rgba(0,201,177,0.45); transform: none; }
+  .course-card.open:hover { transform: none; }
+
+  .course-icon {
+    width: 48px; height: 48px; border-radius: 10px;
+    background: rgba(0,201,177,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1.2rem;
+  }
+  .course-tag {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--teal);
+    background: rgba(0,201,177,0.1); padding: 3px 10px; border-radius: 20px;
+    display: inline-block; margin-bottom: 0.8rem;
+  }
+  .course-card-head {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 0.6rem;
+  }
+  .course-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;
+  }
+  .course-card p { font-size: 0.88rem; color: var(--slate-light); line-height: 1.6; margin-bottom: 1.2rem; }
+  .course-meta { display: flex; gap: 1rem; }
+  .course-meta span {
+    font-size: 0.78rem; color: var(--slate); display: flex; align-items: center; gap: 4px;
+  }
+
+  .course-chevron {
+    flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
+    background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; color: var(--slate-light);
+    transition: transform 0.3s, background 0.2s, border-color 0.2s;
+    margin-top: 0.1rem;
+  }
+  .course-card.open .course-chevron {
+    transform: rotate(180deg);
+    background: rgba(0,201,177,0.15); border-color: rgba(0,201,177,0.35); color: var(--teal);
+  }
+
+  .course-details {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+    opacity: 0;
+  }
+  .course-card.open .course-details {
+    max-height: 600px; opacity: 1; margin-top: 1.2rem;
+  }
+  .course-details-inner {
+    border-top: 1px solid var(--border);
+    padding-top: 1.2rem;
+  }
+  .course-details-inner h4 {
+    font-family: var(--font-display);
+    font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em;
+    color: var(--teal); margin-bottom: 0.6rem; margin-top: 1rem;
+  }
+  .course-details-inner h4:first-child { margin-top: 0; }
+  .course-details-inner ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+  .course-details-inner ul li {
+    font-size: 0.84rem; color: var(--slate-light); line-height: 1.5;
+    padding-left: 1.1rem; position: relative;
+  }
+  .course-details-inner ul li::before {
+    content: '✓'; position: absolute; left: 0; color: var(--teal); font-weight: 700; font-size: 0.78rem;
+  }
+  .course-detail-row {
+    display: flex; justify-content: space-between; gap: 1rem;
+    font-size: 0.83rem; padding: 0.4rem 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  .course-detail-row:last-child { border-bottom: none; }
+  .course-detail-row .label { color: var(--slate); }
+  .course-detail-row .val { color: var(--white); font-weight: 500; text-align: right; }
+  .course-apply-btn {
+    margin-top: 1.4rem; width: 100%; padding: 11px;
+    background: var(--teal); color: var(--navy); border: none; border-radius: 6px;
+    font-family: var(--font-display); font-weight: 700; font-size: 0.86rem;
+    cursor: pointer; transition: background 0.2s, transform 0.2s;
+  }
+  .course-apply-btn:hover { background: #00e5cc; transform: translateY(-1px); }
+
+  /* ── LECTURERS ── */
+  #lecturers { background: var(--navy); }
+  .lecturers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+  .lecturer-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    transition: transform 0.25s, border-color 0.25s;
+  }
+  .lecturer-card:hover { transform: translateY(-4px); border-color: rgba(0,201,177,0.3); }
+
+  .lecturer-img {
+    width: 100%; height: 220px; object-fit: cover; object-position: top;
+    filter: saturate(0.8);
+  }
+  .lecturer-body { padding: 1.4rem; }
+  .lecturer-body h3 {
+    font-family: var(--font-display);
+    font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem;
+  }
+  .lecturer-role {
+    font-size: 0.78rem; color: var(--teal); font-weight: 600; margin-bottom: 0.8rem;
+  }
+  .lecturer-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .lecturer-tags span {
+    font-size: 0.72rem; background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border); border-radius: 4px;
+    padding: 3px 9px; color: var(--slate-light);
+  }
+
+  /* ── EVENTS ── */
+  #events { background: var(--navy-mid); }
+  .events-list { display: flex; flex-direction: column; gap: 1rem; max-width: 800px; }
+  .event-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .event-item:hover { border-color: rgba(0,201,177,0.3); transform: translateX(4px); }
+  .event-item.open { border-color: rgba(0,201,177,0.45); transform: none; }
+  .event-item.open:hover { transform: none; }
+
+  .event-item-head {
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+
+  .event-date {
+    min-width: 60px; text-align: center;
+    background: rgba(0,201,177,0.1); border-radius: 8px;
+    padding: 8px; flex-shrink: 0;
+  }
+  .event-day {
+    font-family: var(--font-display);
+    font-size: 1.5rem; font-weight: 800; color: var(--teal); line-height: 1;
+  }
+  .event-month {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--slate-light);
+  }
+  .event-info { flex: 1; min-width: 0; }
+  .event-info h4 {
+    font-family: var(--font-display);
+    font-size: 0.98rem; font-weight: 700; margin-bottom: 0.25rem;
+  }
+  .event-info p { font-size: 0.83rem; color: var(--slate-light); }
+  .event-badge {
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em;
+    text-transform: uppercase; padding: 4px 12px; border-radius: 20px;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .event-badge.open-badge { background: rgba(0,201,177,0.15); color: var(--teal); border: 1px solid rgba(0,201,177,0.3); }
+  .event-badge.upcoming { background: rgba(245,158,11,0.12); color: var(--gold); border: 1px solid rgba(245,158,11,0.25); }
+
+  .event-chevron {
+    flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
+    background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; color: var(--slate-light);
+    transition: transform 0.3s, background 0.2s, border-color 0.2s;
+  }
+  .event-item.open .event-chevron {
+    transform: rotate(180deg);
+    background: rgba(0,201,177,0.15); border-color: rgba(0,201,177,0.35); color: var(--teal);
+  }
+
+  .event-details {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+    opacity: 0;
+  }
+  .event-item.open .event-details {
+    max-height: 500px; opacity: 1; margin-top: 1.2rem;
+  }
+  .event-details-inner {
+    border-top: 1px solid var(--border);
+    padding-top: 1.2rem;
+  }
+  .event-details-inner p.event-desc {
+    font-size: 0.86rem; color: var(--slate-light); line-height: 1.7; margin-bottom: 1rem;
+  }
+  .event-detail-row {
+    display: flex; justify-content: space-between; gap: 1rem;
+    font-size: 0.83rem; padding: 0.4rem 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  .event-detail-row:last-child { border-bottom: none; }
+  .event-detail-row .label { color: var(--slate); }
+  .event-detail-row .val { color: var(--white); font-weight: 500; text-align: right; }
+  .event-rsvp-btn {
+    margin-top: 1.4rem; width: 100%; padding: 11px;
+    background: var(--teal); color: var(--navy); border: none; border-radius: 6px;
+    font-family: var(--font-display); font-weight: 700; font-size: 0.86rem;
+    cursor: pointer; transition: background 0.2s, transform 0.2s;
+  }
+  .event-rsvp-btn:hover { background: #00e5cc; transform: translateY(-1px); }
+
+  /* ── PARTNERS ── */
+  #partners { background: var(--navy); text-align: center; }
+  .partners-grid {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem;
+  }
+  .partner-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 1.2rem 2.5rem;
+    font-family: var(--font-display);
+    font-weight: 700; font-size: 1rem;
+    color: var(--slate-light);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .partner-card:hover { border-color: var(--teal); color: var(--white); }
+
+  /* ── STUDENT LIFE ── */
+  #studentlife { background: var(--navy-mid); }
+  .life-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.2rem;
+  }
+  .life-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .life-card:hover { border-color: rgba(0,201,177,0.3); transform: translateY(-3px); }
+  .life-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+  .life-card h3 {
+    font-family: var(--font-display);
+    font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem;
+  }
+  .life-card p { font-size: 0.83rem; color: var(--slate-light); }
+
+  /* ── JOBS ── */
+  #jobs { background: var(--navy); }
+  .jobs-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .job-box {
+    background: var(--card-bg);
+    border: 1px solid var(--border); border-radius: 12px;
+    padding: 2rem;
+  }
+  .job-box h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem; font-weight: 700; margin-bottom: 1.2rem;
+  }
+
+  .upload-area {
+    border: 2px dashed rgba(0,201,177,0.3); border-radius: 8px;
+    padding: 2.5rem 1rem; text-align: center;
+    cursor: pointer; transition: border-color 0.2s, background 0.2s;
+    margin-bottom: 1rem;
+  }
+  .upload-area:hover { border-color: var(--teal); background: rgba(0,201,177,0.04); }
+  .upload-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .upload-text { font-size: 0.85rem; color: var(--slate-light); }
+  .upload-text strong { color: var(--teal); }
+
+  .form-group { margin-bottom: 1rem; }
+  .form-group label {
+    display: block; font-size: 0.78rem; font-weight: 600;
+    color: var(--slate-light); margin-bottom: 0.4rem;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .form-group select, .form-group input {
+    width: 100%; padding: 10px 14px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border); border-radius: 6px;
+    color: var(--white); font-family: var(--font-body);
+    font-size: 0.9rem; outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group select:focus, .form-group input:focus { border-color: var(--teal); }
+  .form-group select option { background: var(--navy-mid); }
+
+  .btn-submit {
+    width: 100%; padding: 12px;
+    background: var(--teal); color: var(--navy);
+    border: none; border-radius: 6px;
+    font-family: var(--font-display); font-weight: 700; font-size: 0.95rem;
+    cursor: pointer; transition: background 0.2s, transform 0.2s;
+  }
+  .btn-submit:hover { background: #00e5cc; transform: translateY(-1px); }
+
+  /* ── PORTAL ── */
+  #portal { background: var(--navy-mid); }
+  .portal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+  .portal-btn {
+    background: var(--card-bg);
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 1.4rem 1rem; text-align: center;
+    text-decoration: none; color: var(--white);
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .portal-btn:hover { border-color: rgba(0,201,177,0.4); transform: translateY(-3px); }
+  .portal-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+  .portal-label { font-size: 0.82rem; font-weight: 600; color: var(--slate-light); }
+
+  .portal-login {
+    max-width: 380px; margin: 0 auto 2.5rem;
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 12px; padding: 2rem;
+  }
+  .portal-login h3 {
+    font-family: var(--font-display);
+    font-size: 1rem; font-weight: 700; margin-bottom: 1.2rem; text-align: center;
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--navy); }
+  .contact-wrapper {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;
+  }
+  .contact-info h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    font-weight: 800; margin-bottom: 1rem; letter-spacing: -0.02em;
+  }
+  .contact-info p {
+    color: var(--slate-light); margin-bottom: 2rem; line-height: 1.7;
+  }
+  .contact-items { display: flex; flex-direction: column; gap: 1.2rem; }
+  .contact-item {
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .contact-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: rgba(0,201,177,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contact-item-text { font-size: 0.85rem; }
+  .contact-item-label { color: var(--slate); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; }
+  .contact-item-val { color: var(--white); font-weight: 500; }
+
+  .contact-form {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 12px; padding: 2rem;
+  }
+  .contact-form h3 {
+    font-family: var(--font-display); font-size: 1rem; font-weight: 700;
+    margin-bottom: 1.4rem;
+  }
+  .contact-form textarea {
+    width: 100%; padding: 10px 14px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border); border-radius: 6px;
+    color: var(--white); font-family: var(--font-body);
+    font-size: 0.9rem; outline: none; resize: vertical;
+    min-height: 110px; transition: border-color 0.2s;
+  }
+  .contact-form textarea:focus { border-color: var(--teal); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060f1d;
+    padding: 3rem 5% 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem;
+    margin-bottom: 2rem;
+  }
+  .footer-brand p {
+    font-size: 0.85rem; color: var(--slate); margin-top: 0.8rem; max-width: 260px; line-height: 1.7;
+  }
+  .footer-col h4 {
+    font-family: var(--font-display); font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate-light);
+    margin-bottom: 1rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.6rem; }
+  .footer-col ul li a {
+    font-size: 0.85rem; color: var(--slate); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--teal); }
+  .footer-bottom {
+    border-top: 1px solid var(--border); padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.8rem; color: var(--slate);
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px; background: var(--border); margin: 0;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; position: fixed; top: 70px; left: 0; right: 0; bottom: 0; background: var(--navy); flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; z-index: 999; }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+    .hero { padding: 110px 5% 60px; }
+    .hero-image { display: none; }
+    .hero-stats { gap: 1.5rem; }
+    .jobs-wrapper { grid-template-columns: 1fr; }
+    .contact-wrapper { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .event-item-head { flex-wrap: wrap; }
+    .event-badge { margin-left: 76px; }
+  }
+
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
+    .courses-grid, .lecturers-grid, .life-grid { grid-template-columns: 1fr; }
+  }
+
+  /* scroll reveal */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    <div class="logo-dot"></div>
+    Edu<span>Tech</span> Institute
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#lecturers">Lecturers</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#jobs">Jobs</a></li>
+    <li><a href="#partners">Partners</a></li>
+    <li><a href="#studentlife">Student Life</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#portal" class="nav-cta">Student Portal</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-stripes"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      🎓 Nairobi, Kenya · Est. 2015
+    </div>
+    <h1>Transform Your Future Through <em>Quality Education</em></h1>
+    <p class="hero-sub">Industry-aligned programs built around real-world skills. Learn from experienced professionals, land your first role, and build a career that matters.</p>
+    <div class="hero-buttons">
+      <a href="#courses" class="btn-primary">Explore Courses</a>
+      <a href="#contact" class="btn-outline">Book a Free Consultation</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num" id="countStudents">0<span>+</span></div>
+        <div class="stat-label">Students Enrolled</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" id="countCourses">0<span>+</span></div>
+        <div class="stat-label">Programs Offered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" id="countPartners">0<span>+</span></div>
+        <div class="stat-label">Industry Partners</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=900&auto=format&fit=crop&q=80" alt="Students learning at EduTech Institute">
+  </div>
+</section>
+
+<!-- ── COURSES ── -->
+<section id="courses">
+  <div class="section-eyebrow">Programs &amp; Courses</div>
+  <div class="section-title">What Would You Like to Study?</div>
+  <p class="section-sub">Hands-on, industry-relevant programs designed to get you job-ready from day one. All courses include mentorship and career placement support. Tap a course to see full details.</p>
+
+  <div class="courses-grid reveal" id="coursesGrid">
+    <div class="course-card" data-course="0">
+      <div class="course-card-head">
+        <div style="flex:1">
+          <div class="course-icon">💻</div>
+          <span class="course-tag">Technology</span>
+          <h3>Software Engineering</h3>
+          <p>Full-stack development with Python, JavaScript, and cloud deployment. Build real products from week one.</p>
+          <div class="course-meta">
+            <span>⏱ 6 Months</span>
+            <span>📍 On-site + Online</span>
+          </div>
+        </div>
+        <div class="course-chevron">▼</div>
+      </div>
+      <div class="course-details">
+        <div class="course-details-inner">
+          <h4>What You'll Learn</h4>
+          <ul>
+            <li>HTML, CSS, JavaScript and modern frontend frameworks</li>
+            <li>Backend development with Python (Django/Flask) and Node.js</li>
+            <li>Relational and NoSQL databases (PostgreSQL, MongoDB)</li>
+            <li>Git, CI/CD pipelines and cloud deployment (AWS/Azure)</li>
+            <li>Capstone project built and deployed end-to-end</li>
+          </ul>
+          <h4>Programme Details</h4>
+          <div class="course-detail-row"><span class="label">Duration</span><span class="val">6 Months (Full-Time)</span></div>
+          <div class="course-detail-row"><span class="label">Format</span><span class="val">On-site + Online</span></div>
+          <div class="course-detail-row"><span class="label">Tuition</span><span class="val">KES 180,000</span></div>
+          <div class="course-detail-row"><span class="label">Next Intake</span><span class="val">7 July 2026</span></div>
+          <div class="course-detail-row"><span class="label">Certification</span><span class="val">EduTech Software Engineering Cert.</span></div>
+          <button class="course-apply-btn" onclick="event.stopPropagation(); showToast('Application started for Software Engineering!')">Apply for This Course</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-card" data-course="1">
+      <div class="course-card-head">
+        <div style="flex:1">
+          <div class="course-icon">📊</div>
+          <span class="course-tag">Data</span>
+          <h3>Data Science &amp; Analytics</h3>
+          <p>Master Python, SQL, Power BI and machine learning. Graduate with a professional portfolio of real datasets.</p>
+          <div class="course-meta">
+            <span>⏱ 5 Months</span>
+            <span>📍 Hybrid</span>
+          </div>
+        </div>
+        <div class="course-chevron">▼</div>
+      </div>
+      <div class="course-details">
+        <div class="course-details-inner">
+          <h4>What You'll Learn</h4>
+          <ul>
+            <li>Python for data analysis (Pandas, NumPy, Matplotlib)</li>
+            <li>SQL for querying and managing relational databases</li>
+            <li>Data visualization with Power BI and Tableau</li>
+            <li>Statistics, A/B testing and introductory machine learning</li>
+            <li>Portfolio of 4 real-world analytics case studies</li>
+          </ul>
+          <h4>Programme Details</h4>
+          <div class="course-detail-row"><span class="label">Duration</span><span class="val">5 Months (Full-Time)</span></div>
+          <div class="course-detail-row"><span class="label">Format</span><span class="val">Hybrid</span></div>
+          <div class="course-detail-row"><span class="label">Tuition</span><span class="val">KES 160,000</span></div>
+          <div class="course-detail-row"><span class="label">Next Intake</span><span class="val">7 July 2026</span></div>
+          <div class="course-detail-row"><span class="label">Certification</span><span class="val">EduTech Data Science Cert.</span></div>
+          <button class="course-apply-btn" onclick="event.stopPropagation(); showToast('Application started for Data Science & Analytics!')">Apply for This Course</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-card" data-course="2">
+      <div class="course-card-head">
+        <div style="flex:1">
+          <div class="course-icon">🤖</div>
+          <span class="course-tag">Artificial Intelligence</span>
+          <h3>AI &amp; Machine Learning</h3>
+          <p>Deep learning, NLP, and computer vision with TensorFlow and PyTorch. Includes an industry capstone project.</p>
+          <div class="course-meta">
+            <span>⏱ 6 Months</span>
+            <span>📍 On-site + Online</span>
+          </div>
+        </div>
+        <div class="course-chevron">▼</div>
+      </div>
+      <div class="course-details">
+        <div class="course-details-inner">
+          <h4>What You'll Learn</h4>
+          <ul>
+            <li>Mathematical foundations: linear algebra, probability, calculus</li>
+            <li>Deep learning with TensorFlow and PyTorch</li>
+            <li>Natural Language Processing and Computer Vision</li>
+            <li>Model deployment and MLOps fundamentals</li>
+            <li>Industry-sponsored capstone project</li>
+          </ul>
+          <h4>Programme Details</h4>
+          <div class="course-detail-row"><span class="label">Duration</span><span class="val">6 Months (Full-Time)</span></div>
+          <div class="course-detail-row"><span class="label">Format</span><span class="val">On-site + Online</span></div>
+          <div class="course-detail-row"><span class="label">Tuition</span><span class="val">KES 195,000</span></div>
+          <div class="course-detail-row"><span class="label">Next Intake</span><span class="val">7 July 2026</span></div>
+          <div class="course-detail-row"><span class="label">Certification</span><span class="val">EduTech AI &amp; ML Cert.</span></div>
+          <button class="course-apply-btn" onclick="event.stopPropagation(); showToast('Application started for AI & Machine Learning!')">Apply for This Course</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-card" data-course="3">
+      <div class="course-card-head">
+        <div style="flex:1">
+          <div class="course-icon">🔐</div>
+          <span class="course-tag">Cybersecurity</span>
+          <h3>Cybersecurity &amp; Ethical Hacking</h3>
+          <p>Network security, penetration testing, SIEM tools, and compliance frameworks. CEH exam preparation included.</p>
+          <div class="course-meta">
+            <span>⏱ 4 Months</span>
+            <span>📍 On-site</span>
+          </div>
+        </div>
+        <div class="course-chevron">▼</div>
+      </div>
+      <div class="course-details">
+        <div class="course-details-inner">
+          <h4>What You'll Learn</h4>
+          <ul>
+            <li>Network security fundamentals and firewalls</li>
+            <li>Penetration testing and vulnerability assessment</li>
+            <li>SIEM tools and incident response</li>
+            <li>Compliance frameworks (ISO 27001, NIST)</li>
+            <li>CEH exam preparation and mock testing</li>
+          </ul>
+          <h4>Programme Details</h4>
+          <div class="course-detail-row"><span class="label">Duration</span><span class="val">4 Months (Full-Time)</span></div>
+          <div class="course-detail-row"><span class="label">Format</span><span class="val">On-site</span></div>
+          <div class="course-detail-row"><span class="label">Tuition</span><span class="val">KES 150,000</span></div>
+          <div class="course-detail-row"><span class="label">Next Intake</span><span class="val">7 July 2026</span></div>
+          <div class="course-detail-row"><span class="label">Certification</span><span class="val">EduTech Cybersecurity Cert. + CEH Prep</span></div>
+          <button class="course-apply-btn" onclick="event.stopPropagation(); showToast('Application started for Cybersecurity & Ethical Hacking!')">Apply for This Course</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-card" data-course="4">
+      <div class="course-card-head">
+        <div style="flex:1">
+          <div class="course-icon">📱</div>
+          <span class="course-tag">Mobile</span>
+          <h3>Mobile App Development</h3>
+          <p>Build cross-platform apps with Flutter and React Native. Deploy to the Play Store and App Store by graduation.</p>
+          <div class="course-meta">
+            <span>⏱ 4 Months</span>
+            <span>📍 Hybrid</span>
+          </div>
+        </div>
+        <div class="course-chevron">▼</div>
+      </div>
+      <div class="course-details">
+        <div class="course-details-inner">
+          <h4>What You'll Learn</h4>
+          <ul>
+            <li>Cross-platform development with Flutter and Dart</li>
+            <li>React Native and JavaScript-based mobile apps</li>
+            <li>Mobile UI/UX design principles</li>
+            <li>App Store and Play Store deployment</li>
+            <li>API integration and local data storage</li>
+          </ul>
+          <h4>Programme Details</h4>
+          <div class="course-detail-row"><span class="label">Duration</span><span class="val">4 Months (Full-Time)</span></div>
+          <div class="course-detail-row"><span class="label">Format</span><span class="val">Hybrid</span></div>
+          <div class="course-detail-row"><span class="label">Tuition</span><span class="val">KES 150,000</span></div>
+          <div class="course-detail-row"><span class="label">Next Intake</span><span class="val">7 July 2026</span></div>
+          <div class="course-detail-row"><span class="label">Certification</span><span class="val">EduTech Mobile Development Cert.</span></div>
+          <button class="course-apply-btn" onclick="event.stopPropagation(); showToast('Application started for Mobile App Development!')">Apply for This Course</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="course-card" data-course="5">
+      <div class="course-card-head">
+        <div style="flex:1">
+          <div class="course-icon">📣</div>
+          <span class="course-tag">Marketing</span>
+          <h3>Digital Marketing &amp; SEO</h3>
+          <p>Social media strategy, Google Ads, content marketing, and analytics. Includes live brand campaign projects.</p>
+          <div class="course-meta">
+            <span>⏱ 3 Months</span>
+            <span>📍 Online</span>
+          </div>
+        </div>
+        <div class="course-chevron">▼</div>
+      </div>
+      <div class="course-details">
+        <div class="course-details-inner">
+          <h4>What You'll Learn</h4>
+          <ul>
+            <li>Social media strategy and content calendars</li>
+            <li>Google Ads, Meta Ads and paid campaign management</li>
+            <li>SEO fundamentals and keyword research</li>
+            <li>Marketing analytics and reporting dashboards</li>
+            <li>Live campaign run for a real partner brand</li>
+          </ul>
+          <h4>Programme Details</h4>
+          <div class="course-detail-row"><span class="label">Duration</span><span class="val">3 Months (Full-Time)</span></div>
+          <div class="course-detail-row"><span class="label">Format</span><span class="val">Online</span></div>
+          <div class="course-detail-row"><span class="label">Tuition</span><span class="val">KES 95,000</span></div>
+          <div class="course-detail-row"><span class="label">Next Intake</span><span class="val">7 July 2026</span></div>
+          <div class="course-detail-row"><span class="label">Certification</span><span class="val">EduTech Digital Marketing Cert.</span></div>
+          <button class="course-apply-btn" onclick="event.stopPropagation(); showToast('Application started for Digital Marketing & SEO!')">Apply for This Course</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── LECTURERS ── -->
+<section id="lecturers">
+  <div class="section-eyebrow">Our Faculty</div>
+  <div class="section-title">Learn From the Best</div>
+  <p class="section-sub">Our lecturers are industry practitioners — working professionals who bring real-world insight into every class.</p>
+
+  <div class="lecturers-grid reveal">
+    <div class="lecturer-card">
+      <img class="lecturer-img" src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=600&auto=format&fit=crop&q=80" alt="Dr. James Mwangi">
+      <div class="lecturer-body">
+        <h3>Dr. James Mwangi</h3>
+        <div class="lecturer-role">Senior Lecturer – AI &amp; Software Engineering</div>
+        <div class="lecturer-tags">
+          <span>PhD Computer Science</span>
+          <span>12 Yrs Experience</span>
+          <span>AI / ML</span>
+        </div>
+      </div>
+    </div>
+    <div class="lecturer-card">
+      <img class="lecturer-img" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&auto=format&fit=crop&q=80" alt="Prof. Grace Wambui">
+      <div class="lecturer-body">
+        <h3>Prof. Grace Wambui</h3>
+        <div class="lecturer-role">Lead Lecturer – Data Science</div>
+        <div class="lecturer-tags">
+          <span>MSc Data Science</span>
+          <span>8 Yrs Experience</span>
+          <span>Analytics</span>
+        </div>
+      </div>
+    </div>
+    <div class="lecturer-card">
+      <img class="lecturer-img" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&auto=format&fit=crop&q=80" alt="Mr. Brian Otieno">
+      <div class="lecturer-body">
+        <h3>Mr. Brian Otieno</h3>
+        <div class="lecturer-role">Cybersecurity Specialist</div>
+        <div class="lecturer-tags">
+          <span>BSc IT Security</span>
+          <span>10 Yrs Experience</span>
+          <span>CEH Certified</span>
+        </div>
+      </div>
+    </div>
+    <div class="lecturer-card">
+      <img class="lecturer-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80" alt="Ms. Aisha Kamau">
+      <div class="lecturer-body">
+        <h3>Ms. Aisha Kamau</h3>
+        <div class="lecturer-role">Mobile &amp; Web Development</div>
+        <div class="lecturer-tags">
+          <span>MSc Software Eng.</span>
+          <span>6 Yrs Experience</span>
+          <span>Flutter / React</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── EVENTS ── -->
+<section id="events">
+  <div class="section-eyebrow">What's On</div>
+  <div class="section-title">Upcoming Events</div>
+  <p class="section-sub">Stay updated with intakes, ceremonies, and career opportunities at EduTech Institute. Tap an event for full details.</p>
+
+  <div class="events-list reveal" id="eventsList">
+    <div class="event-item" data-event="0">
+      <div class="event-item-head">
+        <div class="event-date"><div class="event-day">07</div><div class="event-month">Jul 2026</div></div>
+        <div class="event-info">
+          <h4>January Intake – Applications Open</h4>
+          <p>Applications for the January 2027 cohort are now open. All programmes available.</p>
+        </div>
+        <span class="event-badge open-badge">Open Now</span>
+        <div class="event-chevron">▼</div>
+      </div>
+      <div class="event-details">
+        <div class="event-details-inner">
+          <p class="event-desc">Applications are open for the January 2027 cohort across all EduTech Institute programmes. Early applicants get priority placement in their preferred class schedule and access to early-bird tuition rates. Submit your application online or visit our Upper Hill campus to speak with an admissions advisor.</p>
+          <div class="event-detail-row"><span class="label">Date</span><span class="val">Opens 7 July 2026</span></div>
+          <div class="event-detail-row"><span class="label">Deadline</span><span class="val">15 December 2026</span></div>
+          <div class="event-detail-row"><span class="label">Location</span><span class="val">Online &amp; Upper Hill Campus</span></div>
+          <div class="event-detail-row"><span class="label">Who Can Apply</span><span class="val">All prospective students</span></div>
+          <div class="event-detail-row"><span class="label">Requirements</span><span class="val">ID/Passport, KCSE Certificate</span></div>
+          <button class="event-rsvp-btn" onclick="event.stopPropagation(); showToast('Starting your application for January Intake!')">Start Application</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-item" data-event="1">
+      <div class="event-item-head">
+        <div class="event-date"><div class="event-day">19</div><div class="event-month">Jul 2026</div></div>
+        <div class="event-info">
+          <h4>Annual Career Fair 2026</h4>
+          <p>Meet hiring managers from Safaricom, KCB, Equity Bank and 20+ employers. On campus.</p>
+        </div>
+        <span class="event-badge upcoming">Upcoming</span>
+        <div class="event-chevron">▼</div>
+      </div>
+      <div class="event-details">
+        <div class="event-details-inner">
+          <p class="event-desc">Our biggest recruitment event of the year. Meet hiring managers and recruiters from Safaricom, KCB Group, Equity Bank, Microsoft Kenya, Jumia and over 20 other partner employers. Bring printed copies of your CV and dress in business attire — many attendees receive on-the-spot interview invitations.</p>
+          <div class="event-detail-row"><span class="label">Date</span><span class="val">19 July 2026, 9:00 AM – 4:00 PM</span></div>
+          <div class="event-detail-row"><span class="label">Location</span><span class="val">EduTech Institute Main Hall, Upper Hill</span></div>
+          <div class="event-detail-row"><span class="label">Who Should Attend</span><span class="val">Current students &amp; alumni</span></div>
+          <div class="event-detail-row"><span class="label">What to Bring</span><span class="val">Printed CV, Student ID</span></div>
+          <div class="event-detail-row"><span class="label">Entry</span><span class="val">Free</span></div>
+          <button class="event-rsvp-btn" onclick="event.stopPropagation(); showToast('You\'re registered for the Career Fair!')">RSVP to This Event</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-item" data-event="2">
+      <div class="event-item-head">
+        <div class="event-date"><div class="event-day">02</div><div class="event-month">Aug 2026</div></div>
+        <div class="event-info">
+          <h4>AI &amp; Robotics Skills Workshop</h4>
+          <p>Hands-on 2-day workshop for current students and the public. Certificate of participation awarded.</p>
+        </div>
+        <span class="event-badge upcoming">Upcoming</span>
+        <div class="event-chevron">▼</div>
+      </div>
+      <div class="event-details">
+        <div class="event-details-inner">
+          <p class="event-desc">A hands-on, two-day intensive covering practical AI applications and robotics fundamentals. Led by our AI &amp; Software Engineering faculty in the Innovation Lab. Open to enrolled students and members of the public — no prior experience required. All participants receive a certificate of participation.</p>
+          <div class="event-detail-row"><span class="label">Date</span><span class="val">2–3 August 2026, 9:00 AM – 3:00 PM</span></div>
+          <div class="event-detail-row"><span class="label">Location</span><span class="val">Innovation Lab, Upper Hill Campus</span></div>
+          <div class="event-detail-row"><span class="label">Fee</span><span class="val">KES 3,500 (Students free)</span></div>
+          <div class="event-detail-row"><span class="label">Capacity</span><span class="val">40 seats</span></div>
+          <div class="event-detail-row"><span class="label">Includes</span><span class="val">Materials, lunch, certificate</span></div>
+          <button class="event-rsvp-btn" onclick="event.stopPropagation(); showToast('You\'re registered for the AI & Robotics Workshop!')">RSVP to This Event</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-item" data-event="3">
+      <div class="event-item-head">
+        <div class="event-date"><div class="event-day">15</div><div class="event-month">Aug 2026</div></div>
+        <div class="event-info">
+          <h4>2026 Graduation Ceremony</h4>
+          <p>Celebrating the Class of 2026. Families welcome. KICC, Nairobi — 10:00 AM.</p>
+        </div>
+        <span class="event-badge upcoming">Save the Date</span>
+        <div class="event-chevron">▼</div>
+      </div>
+      <div class="event-details">
+        <div class="event-details-inner">
+          <p class="event-desc">Join us as we celebrate the achievements of the Class of 2026. Graduates across all programmes — Software Engineering, Data Science, AI &amp; ML, Cybersecurity, Mobile Development and Digital Marketing — will receive their certificates on stage. Families and friends are warmly welcome to attend.</p>
+          <div class="event-detail-row"><span class="label">Date</span><span class="val">15 August 2026, 10:00 AM</span></div>
+          <div class="event-detail-row"><span class="label">Location</span><span class="val">KICC, Nairobi</span></div>
+          <div class="event-detail-row"><span class="label">Dress Code</span><span class="val">Graduation gown provided / Smart formal</span></div>
+          <div class="event-detail-row"><span class="label">Guest Tickets</span><span class="val">Up to 4 per graduate</span></div>
+          <div class="event-detail-row"><span class="label">Entry</span><span class="val">Free, ticket required</span></div>
+          <button class="event-rsvp-btn" onclick="event.stopPropagation(); showToast('Graduation tickets reserved!')">Reserve Guest Tickets</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PARTNERS ── -->
+<section id="partners">
+  <div class="section-eyebrow">Industry Partners</div>
+  <div class="section-title">Trusted By Kenya's Leading Employers</div>
+  <p class="section-sub" style="margin:0 auto 2.5rem;">Our graduates are placed directly with partner organisations who actively recruit from our talent pool.</p>
+  <div class="partners-grid reveal">
+    <div class="partner-card">📡 Safaricom PLC</div>
+    <div class="partner-card">🏦 KCB Group</div>
+    <div class="partner-card">💳 Equity Bank Kenya</div>
+    <div class="partner-card">☁️ Microsoft Kenya</div>
+    <div class="partner-card">🛒 Jumia Kenya</div>
+    <div class="partner-card">🌍 Andela Africa</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── STUDENT LIFE ── -->
+<section id="studentlife">
+  <div class="section-eyebrow">Student Life</div>
+  <div class="section-title">More Than Just Classrooms</div>
+  <p class="section-sub">A vibrant campus culture designed to grow the whole person — not just the professional.</p>
+
+  <div class="life-grid reveal">
+    <div class="life-card">
+      <div class="life-icon">🧑‍💻</div>
+      <h3>Clubs &amp; Societies</h3>
+      <p>Coding Club, Debate Society, Business Forum — find your people and sharpen your interests.</p>
+    </div>
+    <div class="life-card">
+      <div class="life-icon">⚽</div>
+      <h3>Sports</h3>
+      <p>Join intramural teams in football, basketball, and more. Compete, stay active, build camaraderie.</p>
+    </div>
+    <div class="life-card">
+      <div class="life-icon">🤖</div>
+      <h3>Innovation Lab</h3>
+      <p>A dedicated lab for AI, robotics, and hardware prototyping. Open to all enrolled students.</p>
+    </div>
+    <div class="life-card">
+      <div class="life-icon">🤝</div>
+      <h3>Community Service</h3>
+      <p>Regular volunteering and outreach initiatives. Graduate with a commitment to giving back.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── JOBS ── -->
+<section id="jobs">
+  <div class="section-eyebrow">Career Centre</div>
+  <div class="section-title">Jobs &amp; Internships</div>
+  <p class="section-sub">We connect our students and alumni with real opportunities. Upload your CV or apply directly below.</p>
+
+  <div class="jobs-wrapper reveal">
+    <div class="job-box">
+      <h3>📄 Upload Your CV</h3>
+      <div class="upload-area" onclick="document.getElementById('cvInput').click()">
+        <div class="upload-icon">⬆️</div>
+        <div class="upload-text"><strong>Click to upload</strong> or drag and drop<br>PDF, DOC, DOCX — max 5MB</div>
+      </div>
+      <input type="file" id="cvInput" accept=".pdf,.doc,.docx" style="display:none" onchange="handleUpload(this)">
+      <div id="uploadStatus" style="font-size:0.82rem;color:var(--teal);margin-top:0.5rem;display:none">✅ CV uploaded successfully!</div>
+      <div class="form-group" style="margin-top:1rem">
+        <label>Full Name</label>
+        <input type="text" placeholder="Your full name">
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="you@example.com">
+      </div>
+      <button class="btn-submit" onclick="showToast('CV submitted! Our careers team will be in touch.')">Submit CV</button>
+    </div>
+
+    <div class="job-box">
+      <h3>💼 Apply for a Role</h3>
+      <div class="form-group">
+        <label>Select Opportunity</label>
+        <select>
+          <option>Software Engineer – Safaricom PLC</option>
+          <option>Data Analyst Intern – KCB Group</option>
+          <option>Cybersecurity Analyst – Equity Bank</option>
+          <option>Mobile Developer – Jumia Kenya</option>
+          <option>Graduate Trainee – Microsoft Kenya</option>
+          <option>Software Intern – Andela Africa</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Opportunity Type</label>
+        <select>
+          <option>Full-Time Job</option>
+          <option>Internship (3 Months)</option>
+          <option>Graduate Programme</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Availability</label>
+        <input type="date">
+      </div>
+      <div class="form-group">
+        <label>Cover Note (optional)</label>
+        <textarea placeholder="A brief note about your interest..." style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:var(--font-body);font-size:0.9rem;outline:none;resize:vertical;min-height:80px;transition:border-color 0.2s"></textarea>
+      </div>
+      <button class="btn-submit" onclick="showToast('Application submitted! You\'ll hear back within 5 business days.')">Submit Application</button>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── PORTAL ── -->
+<section id="portal">
+  <div class="section-eyebrow">Student Portal</div>
+  <div class="section-title">Your Student Dashboard</div>
+  <p class="section-sub">Access fees, results, timetables, and course materials all in one place.</p>
+
+  <div class="portal-login">
+    <h3>🔐 Student Login</h3>
+    <div class="form-group">
+      <label>Student ID</label>
+      <input type="text" placeholder="e.g. EDT-2025-001">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" placeholder="••••••••">
+    </div>
+    <button class="btn-submit" onclick="showToast('Logging you in...')">Log In to Portal</button>
+  </div>
+
+  <div class="portal-grid reveal">
+    <div class="portal-btn" onclick="showToast('Opening Fee Statements...')">
+      <div class="portal-icon">💰</div>
+      <div class="portal-label">Fee Statements</div>
+    </div>
+    <div class="portal-btn" onclick="showToast('Loading Results...')">
+      <div class="portal-icon">📋</div>
+      <div class="portal-label">Exam Results</div>
+    </div>
+    <div class="portal-btn" onclick="showToast('Opening Timetable...')">
+      <div class="portal-icon">🗓️</div>
+      <div class="portal-label">Class Timetable</div>
+    </div>
+    <div class="portal-btn" onclick="showToast('Loading Assignments...')">
+      <div class="portal-icon">📝</div>
+      <div class="portal-label">Assignments</div>
+    </div>
+    <div class="portal-btn" onclick="showToast('Loading Attendance Report...')">
+      <div class="portal-icon">✅</div>
+      <div class="portal-label">Attendance</div>
+    </div>
+    <div class="portal-btn" onclick="showToast('Opening Course Materials...')">
+      <div class="portal-icon">📚</div>
+      <div class="portal-label">Course Materials</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── CONTACT ── -->
+<section id="contact">
+  <div class="contact-wrapper">
+    <div class="contact-info">
+      <div class="section-eyebrow">Contact Us</div>
+      <h2>We'd Love to Hear From You</h2>
+      <p>Whether you're a prospective student, a parent, or an employer looking to partner — our team is ready to help.</p>
+      <div class="contact-items reveal">
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-item-text">
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-val">+254 712 345 678</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">💬</div>
+          <div class="contact-item-text">
+            <div class="contact-item-label">WhatsApp</div>
+            <div class="contact-item-val">+254 712 345 678</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-item-text">
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-val">admissions@edutech.ac.ke</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-item-text">
+            <div class="contact-item-label">Location</div>
+            <div class="contact-item-val">Upper Hill, Nairobi, Kenya</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form reveal">
+      <h3>Send Us a Message</h3>
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Your full name">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="you@example.com">
+      </div>
+      <div class="form-group">
+        <label>Phone (optional)</label>
+        <input type="tel" placeholder="+254 ...">
+      </div>
+      <div class="form-group">
+        <label>What are you enquiring about?</label>
+        <select>
+          <option>Admissions</option>
+          <option>Course Information</option>
+          <option>Fees &amp; Scholarships</option>
+          <option>Career Partnerships</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Tell us how we can help you..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="showToast('Message sent! We\'ll respond within 24 hours.')">Send Message</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a class="nav-logo" href="#" style="margin-bottom:0.8rem;display:inline-flex">
+        <div class="logo-dot"></div>
+        Edu<span>Tech</span> Institute
+      </a>
+      <p>Industry-relevant education for Kenya's next generation of professionals and innovators. Nairobi, Kenya.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Programmes</h4>
+      <ul>
+        <li><a href="#courses">Software Engineering</a></li>
+        <li><a href="#courses">Data Science</a></li>
+        <li><a href="#courses">AI &amp; Machine Learning</a></li>
+        <li><a href="#courses">Cybersecurity</a></li>
+        <li><a href="#courses">Mobile Development</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Institution</h4>
+      <ul>
+        <li><a href="#lecturers">Our Faculty</a></li>
+        <li><a href="#partners">Partners</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#studentlife">Student Life</a></li>
+        <li><a href="#jobs">Career Centre</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#portal">Student Portal</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+        <li><a href="#contact">Apply Now</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Academic Calendar</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 EduTech Institute. All rights reserved.</span>
+    <span>Upper Hill, Nairobi, Kenya · admissions@edutech.ac.ke</span>
+  </div>
+</footer>
+
+<!-- Toast -->
+<div id="toast" style="position:fixed;bottom:2rem;right:2rem;background:var(--teal);color:var(--navy);padding:12px 22px;border-radius:8px;font-family:var(--font-display);font-weight:700;font-size:0.88rem;z-index:9999;transform:translateY(80px);opacity:0;transition:all 0.3s;max-width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.4)"></div>
+
+<script>
+  // Nav scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Hamburger
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  // Counter animation
+  function animateCounter(id, target, suffix='') {
+    const el = document.getElementById(id);
+    if (!el) return;
+    let start = 0;
+    const duration = 1800;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start = Math.min(start + step, target);
+      el.innerHTML = Math.floor(start) + '<span>' + suffix + '</span>';
+      if (start >= target) clearInterval(timer);
+    }, 16);
+  }
+
+  let counted = false;
+  const heroObserver = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !counted) {
+      counted = true;
+      animateCounter('countStudents', 2400, '+');
+      animateCounter('countCourses', 12, '+');
+      animateCounter('countPartners', 30, '+');
+    }
+  });
+  heroObserver.observe(document.querySelector('.hero-stats'));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // Toast
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.style.transform = 'translateY(0)';
+    t.style.opacity = '1';
+    setTimeout(() => { t.style.transform = 'translateY(80px)'; t.style.opacity = '0'; }, 3000);
+  }
+
+  // CV upload
+  function handleUpload(input) {
+    if (input.files.length > 0) {
+      document.getElementById('uploadStatus').style.display = 'block';
+    }
+  }
+
+  // ── COURSE ACCORDION ──
+  // Clicking a course card toggles its details panel open/closed.
+  // Clicking the same card again (while open) closes it.
+  document.querySelectorAll('.course-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const isOpen = card.classList.contains('open');
+      // Close all other open course cards first
+      document.querySelectorAll('.course-card.open').forEach(other => {
+        if (other !== card) other.classList.remove('open');
+      });
+      // Toggle this one
+      card.classList.toggle('open', !isOpen);
+    });
+  });
+
+  // ── EVENT ACCORDION ──
+  // Clicking an event item toggles its details panel open/closed.
+  // Clicking the same event again (while open) closes it.
+  document.querySelectorAll('.event-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.event-item.open').forEach(other => {
+        if (other !== item) other.classList.remove('open');
+      });
+      item.classList.toggle('open', !isOpen);
+    });
+  });
+</script>
+</body>
+</html>
