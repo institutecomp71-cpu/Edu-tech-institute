@@ -83,6 +83,7 @@
     padding: 8px 20px; border-radius: 6px;
     font-weight: 700 !important; font-size: 0.82rem !important;
     transition: background 0.2s, transform 0.2s !important;
+    border: none; cursor: pointer; font-family: inherit;
   }
   .nav-cta:hover { background: #00e5cc !important; transform: translateY(-1px); }
 
@@ -102,7 +103,6 @@
     background: linear-gradient(135deg, #0A1628 0%, #0d2044 50%, #071220 100%);
   }
 
-  /* Diagonal stripe signature element */
   .hero-stripes {
     position: absolute; inset: 0; z-index: 1;
     overflow: hidden;
@@ -175,6 +175,7 @@
     text-decoration: none; display: inline-block;
     transition: transform 0.2s, box-shadow 0.2s;
     box-shadow: 0 4px 20px rgba(245,158,11,0.3);
+    border: none; cursor: pointer;
   }
   .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,158,11,0.4); }
 
@@ -185,6 +186,7 @@
     font-weight: 600; font-size: 0.95rem;
     text-decoration: none; display: inline-block;
     transition: border-color 0.2s, background 0.2s;
+    background: none; cursor: pointer;
   }
   .btn-outline:hover { border-color: var(--teal); background: rgba(0,201,177,0.08); }
 
@@ -239,7 +241,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 1.5rem;
-    align-items: start;
   }
   .course-card {
     background: var(--card-bg);
@@ -248,10 +249,9 @@
     padding: 1.8rem;
     transition: transform 0.25s, border-color 0.25s;
     cursor: pointer;
+    display: flex; flex-direction: column;
   }
   .course-card:hover { transform: translateY(-4px); border-color: rgba(0,201,177,0.3); }
-  .course-card.open { border-color: rgba(0,201,177,0.45); transform: none; }
-  .course-card.open:hover { transform: none; }
 
   .course-icon {
     width: 48px; height: 48px; border-radius: 10px;
@@ -263,75 +263,30 @@
     font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--teal);
     background: rgba(0,201,177,0.1); padding: 3px 10px; border-radius: 20px;
-    display: inline-block; margin-bottom: 0.8rem;
-  }
-  .course-card-head {
-    display: flex; align-items: flex-start; justify-content: space-between; gap: 0.6rem;
+    display: inline-block; margin-bottom: 0.8rem; width: fit-content;
   }
   .course-card h3 {
     font-family: var(--font-display);
     font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem;
   }
-  .course-card p { font-size: 0.88rem; color: var(--slate-light); line-height: 1.6; margin-bottom: 1.2rem; }
-  .course-meta { display: flex; gap: 1rem; }
+  .course-card p { font-size: 0.88rem; color: var(--slate-light); line-height: 1.6; margin-bottom: 1.2rem; flex-grow: 1; }
+  .course-meta { display: flex; gap: 1rem; margin-bottom: 1rem; }
   .course-meta span {
     font-size: 0.78rem; color: var(--slate); display: flex; align-items: center; gap: 4px;
   }
+  .course-enrol-btn {
+    background: transparent; border: 1px solid rgba(0,201,177,0.4);
+    color: var(--teal); padding: 8px 16px; border-radius: 6px;
+    font-family: var(--font-body); font-weight: 600; font-size: 0.82rem;
+    cursor: pointer; transition: background 0.2s, color 0.2s;
+  }
+  .course-enrol-btn:hover { background: var(--teal); color: var(--navy); }
+  .course-enrol-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-  .course-chevron {
-    flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
-    background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.7rem; color: var(--slate-light);
-    transition: transform 0.3s, background 0.2s, border-color 0.2s;
-    margin-top: 0.1rem;
+  .loading-text, .error-text {
+    color: var(--slate-light); font-size: 0.9rem; padding: 1rem 0;
   }
-  .course-card.open .course-chevron {
-    transform: rotate(180deg);
-    background: rgba(0,201,177,0.15); border-color: rgba(0,201,177,0.35); color: var(--teal);
-  }
-
-  .course-details {
-    max-height: 0; overflow: hidden;
-    transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
-    opacity: 0;
-  }
-  .course-card.open .course-details {
-    max-height: 600px; opacity: 1; margin-top: 1.2rem;
-  }
-  .course-details-inner {
-    border-top: 1px solid var(--border);
-    padding-top: 1.2rem;
-  }
-  .course-details-inner h4 {
-    font-family: var(--font-display);
-    font-size: 0.82rem; font-weight: 700; letter-spacing: 0.04em;
-    color: var(--teal); margin-bottom: 0.6rem; margin-top: 1rem;
-  }
-  .course-details-inner h4:first-child { margin-top: 0; }
-  .course-details-inner ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
-  .course-details-inner ul li {
-    font-size: 0.84rem; color: var(--slate-light); line-height: 1.5;
-    padding-left: 1.1rem; position: relative;
-  }
-  .course-details-inner ul li::before {
-    content: '✓'; position: absolute; left: 0; color: var(--teal); font-weight: 700; font-size: 0.78rem;
-  }
-  .course-detail-row {
-    display: flex; justify-content: space-between; gap: 1rem;
-    font-size: 0.83rem; padding: 0.4rem 0;
-    border-bottom: 1px dashed var(--border);
-  }
-  .course-detail-row:last-child { border-bottom: none; }
-  .course-detail-row .label { color: var(--slate); }
-  .course-detail-row .val { color: var(--white); font-weight: 500; text-align: right; }
-  .course-apply-btn {
-    margin-top: 1.4rem; width: 100%; padding: 11px;
-    background: var(--teal); color: var(--navy); border: none; border-radius: 6px;
-    font-family: var(--font-display); font-weight: 700; font-size: 0.86rem;
-    cursor: pointer; transition: background 0.2s, transform 0.2s;
-  }
-  .course-apply-btn:hover { background: #00e5cc; transform: translateY(-1px); }
+  .error-text { color: #f87171; }
 
   /* ── LECTURERS ── */
   #lecturers { background: var(--navy); }
@@ -371,24 +326,18 @@
   #events { background: var(--navy-mid); }
   .events-list { display: flex; flex-direction: column; gap: 1rem; max-width: 800px; }
   .event-item {
+    display: flex; align-items: center; gap: 1.5rem;
     background: var(--card-bg);
     border: 1px solid var(--border); border-radius: 10px;
     padding: 1.2rem 1.5rem;
     transition: border-color 0.2s, transform 0.2s;
-    cursor: pointer;
   }
   .event-item:hover { border-color: rgba(0,201,177,0.3); transform: translateX(4px); }
-  .event-item.open { border-color: rgba(0,201,177,0.45); transform: none; }
-  .event-item.open:hover { transform: none; }
-
-  .event-item-head {
-    display: flex; align-items: center; gap: 1.5rem;
-  }
 
   .event-date {
     min-width: 60px; text-align: center;
     background: rgba(0,201,177,0.1); border-radius: 8px;
-    padding: 8px; flex-shrink: 0;
+    padding: 8px;
   }
   .event-day {
     font-family: var(--font-display);
@@ -398,62 +347,19 @@
     font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--slate-light);
   }
-  .event-info { flex: 1; min-width: 0; }
   .event-info h4 {
     font-family: var(--font-display);
     font-size: 0.98rem; font-weight: 700; margin-bottom: 0.25rem;
   }
   .event-info p { font-size: 0.83rem; color: var(--slate-light); }
   .event-badge {
+    margin-left: auto;
     font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em;
     text-transform: uppercase; padding: 4px 12px; border-radius: 20px;
-    white-space: nowrap; flex-shrink: 0;
+    white-space: nowrap;
   }
-  .event-badge.open-badge { background: rgba(0,201,177,0.15); color: var(--teal); border: 1px solid rgba(0,201,177,0.3); }
+  .event-badge.open { background: rgba(0,201,177,0.15); color: var(--teal); border: 1px solid rgba(0,201,177,0.3); }
   .event-badge.upcoming { background: rgba(245,158,11,0.12); color: var(--gold); border: 1px solid rgba(245,158,11,0.25); }
-
-  .event-chevron {
-    flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%;
-    background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.7rem; color: var(--slate-light);
-    transition: transform 0.3s, background 0.2s, border-color 0.2s;
-  }
-  .event-item.open .event-chevron {
-    transform: rotate(180deg);
-    background: rgba(0,201,177,0.15); border-color: rgba(0,201,177,0.35); color: var(--teal);
-  }
-
-  .event-details {
-    max-height: 0; overflow: hidden;
-    transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
-    opacity: 0;
-  }
-  .event-item.open .event-details {
-    max-height: 500px; opacity: 1; margin-top: 1.2rem;
-  }
-  .event-details-inner {
-    border-top: 1px solid var(--border);
-    padding-top: 1.2rem;
-  }
-  .event-details-inner p.event-desc {
-    font-size: 0.86rem; color: var(--slate-light); line-height: 1.7; margin-bottom: 1rem;
-  }
-  .event-detail-row {
-    display: flex; justify-content: space-between; gap: 1rem;
-    font-size: 0.83rem; padding: 0.4rem 0;
-    border-bottom: 1px dashed var(--border);
-  }
-  .event-detail-row:last-child { border-bottom: none; }
-  .event-detail-row .label { color: var(--slate); }
-  .event-detail-row .val { color: var(--white); font-weight: 500; text-align: right; }
-  .event-rsvp-btn {
-    margin-top: 1.4rem; width: 100%; padding: 11px;
-    background: var(--teal); color: var(--navy); border: none; border-radius: 6px;
-    font-family: var(--font-display); font-weight: 700; font-size: 0.86rem;
-    cursor: pointer; transition: background 0.2s, transform 0.2s;
-  }
-  .event-rsvp-btn:hover { background: #00e5cc; transform: translateY(-1px); }
 
   /* ── PARTNERS ── */
   #partners { background: var(--navy); text-align: center; }
@@ -541,6 +447,7 @@
     cursor: pointer; transition: background 0.2s, transform 0.2s;
   }
   .btn-submit:hover { background: #00e5cc; transform: translateY(-1px); }
+  .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
   /* ── PORTAL ── */
   #portal { background: var(--navy-mid); }
@@ -570,6 +477,22 @@
     font-family: var(--font-display);
     font-size: 1rem; font-weight: 700; margin-bottom: 1.2rem; text-align: center;
   }
+  .portal-toggle {
+    display: flex; gap: 0.5rem; margin-bottom: 1.2rem;
+    background: rgba(255,255,255,0.04); border-radius: 6px; padding: 4px;
+  }
+  .portal-toggle button {
+    flex: 1; padding: 8px; border: none; border-radius: 4px;
+    background: transparent; color: var(--slate-light);
+    font-family: var(--font-body); font-weight: 600; font-size: 0.8rem;
+    cursor: pointer; transition: background 0.2s, color 0.2s;
+  }
+  .portal-toggle button.active { background: var(--teal); color: var(--navy); }
+  .portal-loggedin {
+    text-align: center; padding: 1rem 0;
+  }
+  .portal-loggedin p { font-size: 0.9rem; color: var(--slate-light); margin-bottom: 1rem; }
+  .portal-loggedin strong { color: var(--teal); }
 
   /* ── CONTACT ── */
   #contact { background: var(--navy); }
@@ -663,8 +586,6 @@
     .jobs-wrapper { grid-template-columns: 1fr; }
     .contact-wrapper { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
-    .event-item-head { flex-wrap: wrap; }
-    .event-badge { margin-left: 76px; }
   }
 
   @media (max-width: 480px) {
@@ -742,218 +663,10 @@
 <section id="courses">
   <div class="section-eyebrow">Programs &amp; Courses</div>
   <div class="section-title">What Would You Like to Study?</div>
-  <p class="section-sub">Hands-on, industry-relevant programs designed to get you job-ready from day one. All courses include mentorship and career placement support. Tap a course to see full details.</p>
+  <p class="section-sub">Hands-on, industry-relevant programs designed to get you job-ready from day one. All courses include mentorship and career placement support.</p>
 
   <div class="courses-grid reveal" id="coursesGrid">
-    <div class="course-card" data-course="0">
-      <div class="course-card-head">
-        <div style="flex:1">
-          <div class="course-icon">💻</div>
-          <span class="course-tag">Technology</span>
-          <h3>Software Engineering</h3>
-          <p>Full-stack development with Python, JavaScript, and cloud deployment. Build real products from week one.</p>
-          <div class="course-meta">
-            <span>⏱ 6 Months</span>
-            <span>📍 On-site + Online</span>
-          </div>
-        </div>
-        <div class="course-chevron">▼</div>
-      </div>
-      <div class="course-details">
-        <div class="course-details-inner">
-          <h4>What You'll Learn</h4>
-          <ul>
-            <li>HTML, CSS, JavaScript and modern frontend frameworks</li>
-            <li>Backend development with Python (Django/Flask) and Node.js</li>
-            <li>Relational and NoSQL databases (PostgreSQL, MongoDB)</li>
-            <li>Git, CI/CD pipelines and cloud deployment (AWS/Azure)</li>
-            <li>Capstone project built and deployed end-to-end</li>
-          </ul>
-          <h4>Programme Details</h4>
-          <div class="course-detail-row"><span class="label">Duration</span><span class="val">6 Months (Full-Time)</span></div>
-          <div class="course-detail-row"><span class="label">Format</span><span class="val">On-site + Online</span></div>
-          <div class="course-detail-row"><span class="label">Tuition</span><span class="val">KES 180,000</span></div>
-          <div class="course-detail-row"><span class="label">Next Intake</span><span class="val">7 July 2026</span></div>
-          <div class="course-detail-row"><span class="label">Certification</span><span class="val">EduTech Software Engineering Cert.</span></div>
-          <button class="course-apply-btn" onclick="event.stopPropagation(); showToast('Application started for Software Engineering!')">Apply for This Course</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="course-card" data-course="1">
-      <div class="course-card-head">
-        <div style="flex:1">
-          <div class="course-icon">📊</div>
-          <span class="course-tag">Data</span>
-          <h3>Data Science &amp; Analytics</h3>
-          <p>Master Python, SQL, Power BI and machine learning. Graduate with a professional portfolio of real datasets.</p>
-          <div class="course-meta">
-            <span>⏱ 5 Months</span>
-            <span>📍 Hybrid</span>
-          </div>
-        </div>
-        <div class="course-chevron">▼</div>
-      </div>
-      <div class="course-details">
-        <div class="course-details-inner">
-          <h4>What You'll Learn</h4>
-          <ul>
-            <li>Python for data analysis (Pandas, NumPy, Matplotlib)</li>
-            <li>SQL for querying and managing relational databases</li>
-            <li>Data visualization with Power BI and Tableau</li>
-            <li>Statistics, A/B testing and introductory machine learning</li>
-            <li>Portfolio of 4 real-world analytics case studies</li>
-          </ul>
-          <h4>Programme Details</h4>
-          <div class="course-detail-row"><span class="label">Duration</span><span class="val">5 Months (Full-Time)</span></div>
-          <div class="course-detail-row"><span class="label">Format</span><span class="val">Hybrid</span></div>
-          <div class="course-detail-row"><span class="label">Tuition</span><span class="val">KES 160,000</span></div>
-          <div class="course-detail-row"><span class="label">Next Intake</span><span class="val">7 July 2026</span></div>
-          <div class="course-detail-row"><span class="label">Certification</span><span class="val">EduTech Data Science Cert.</span></div>
-          <button class="course-apply-btn" onclick="event.stopPropagation(); showToast('Application started for Data Science & Analytics!')">Apply for This Course</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="course-card" data-course="2">
-      <div class="course-card-head">
-        <div style="flex:1">
-          <div class="course-icon">🤖</div>
-          <span class="course-tag">Artificial Intelligence</span>
-          <h3>AI &amp; Machine Learning</h3>
-          <p>Deep learning, NLP, and computer vision with TensorFlow and PyTorch. Includes an industry capstone project.</p>
-          <div class="course-meta">
-            <span>⏱ 6 Months</span>
-            <span>📍 On-site + Online</span>
-          </div>
-        </div>
-        <div class="course-chevron">▼</div>
-      </div>
-      <div class="course-details">
-        <div class="course-details-inner">
-          <h4>What You'll Learn</h4>
-          <ul>
-            <li>Mathematical foundations: linear algebra, probability, calculus</li>
-            <li>Deep learning with TensorFlow and PyTorch</li>
-            <li>Natural Language Processing and Computer Vision</li>
-            <li>Model deployment and MLOps fundamentals</li>
-            <li>Industry-sponsored capstone project</li>
-          </ul>
-          <h4>Programme Details</h4>
-          <div class="course-detail-row"><span class="label">Duration</span><span class="val">6 Months (Full-Time)</span></div>
-          <div class="course-detail-row"><span class="label">Format</span><span class="val">On-site + Online</span></div>
-          <div class="course-detail-row"><span class="label">Tuition</span><span class="val">KES 195,000</span></div>
-          <div class="course-detail-row"><span class="label">Next Intake</span><span class="val">7 July 2026</span></div>
-          <div class="course-detail-row"><span class="label">Certification</span><span class="val">EduTech AI &amp; ML Cert.</span></div>
-          <button class="course-apply-btn" onclick="event.stopPropagation(); showToast('Application started for AI & Machine Learning!')">Apply for This Course</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="course-card" data-course="3">
-      <div class="course-card-head">
-        <div style="flex:1">
-          <div class="course-icon">🔐</div>
-          <span class="course-tag">Cybersecurity</span>
-          <h3>Cybersecurity &amp; Ethical Hacking</h3>
-          <p>Network security, penetration testing, SIEM tools, and compliance frameworks. CEH exam preparation included.</p>
-          <div class="course-meta">
-            <span>⏱ 4 Months</span>
-            <span>📍 On-site</span>
-          </div>
-        </div>
-        <div class="course-chevron">▼</div>
-      </div>
-      <div class="course-details">
-        <div class="course-details-inner">
-          <h4>What You'll Learn</h4>
-          <ul>
-            <li>Network security fundamentals and firewalls</li>
-            <li>Penetration testing and vulnerability assessment</li>
-            <li>SIEM tools and incident response</li>
-            <li>Compliance frameworks (ISO 27001, NIST)</li>
-            <li>CEH exam preparation and mock testing</li>
-          </ul>
-          <h4>Programme Details</h4>
-          <div class="course-detail-row"><span class="label">Duration</span><span class="val">4 Months (Full-Time)</span></div>
-          <div class="course-detail-row"><span class="label">Format</span><span class="val">On-site</span></div>
-          <div class="course-detail-row"><span class="label">Tuition</span><span class="val">KES 150,000</span></div>
-          <div class="course-detail-row"><span class="label">Next Intake</span><span class="val">7 July 2026</span></div>
-          <div class="course-detail-row"><span class="label">Certification</span><span class="val">EduTech Cybersecurity Cert. + CEH Prep</span></div>
-          <button class="course-apply-btn" onclick="event.stopPropagation(); showToast('Application started for Cybersecurity & Ethical Hacking!')">Apply for This Course</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="course-card" data-course="4">
-      <div class="course-card-head">
-        <div style="flex:1">
-          <div class="course-icon">📱</div>
-          <span class="course-tag">Mobile</span>
-          <h3>Mobile App Development</h3>
-          <p>Build cross-platform apps with Flutter and React Native. Deploy to the Play Store and App Store by graduation.</p>
-          <div class="course-meta">
-            <span>⏱ 4 Months</span>
-            <span>📍 Hybrid</span>
-          </div>
-        </div>
-        <div class="course-chevron">▼</div>
-      </div>
-      <div class="course-details">
-        <div class="course-details-inner">
-          <h4>What You'll Learn</h4>
-          <ul>
-            <li>Cross-platform development with Flutter and Dart</li>
-            <li>React Native and JavaScript-based mobile apps</li>
-            <li>Mobile UI/UX design principles</li>
-            <li>App Store and Play Store deployment</li>
-            <li>API integration and local data storage</li>
-          </ul>
-          <h4>Programme Details</h4>
-          <div class="course-detail-row"><span class="label">Duration</span><span class="val">4 Months (Full-Time)</span></div>
-          <div class="course-detail-row"><span class="label">Format</span><span class="val">Hybrid</span></div>
-          <div class="course-detail-row"><span class="label">Tuition</span><span class="val">KES 150,000</span></div>
-          <div class="course-detail-row"><span class="label">Next Intake</span><span class="val">7 July 2026</span></div>
-          <div class="course-detail-row"><span class="label">Certification</span><span class="val">EduTech Mobile Development Cert.</span></div>
-          <button class="course-apply-btn" onclick="event.stopPropagation(); showToast('Application started for Mobile App Development!')">Apply for This Course</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="course-card" data-course="5">
-      <div class="course-card-head">
-        <div style="flex:1">
-          <div class="course-icon">📣</div>
-          <span class="course-tag">Marketing</span>
-          <h3>Digital Marketing &amp; SEO</h3>
-          <p>Social media strategy, Google Ads, content marketing, and analytics. Includes live brand campaign projects.</p>
-          <div class="course-meta">
-            <span>⏱ 3 Months</span>
-            <span>📍 Online</span>
-          </div>
-        </div>
-        <div class="course-chevron">▼</div>
-      </div>
-      <div class="course-details">
-        <div class="course-details-inner">
-          <h4>What You'll Learn</h4>
-          <ul>
-            <li>Social media strategy and content calendars</li>
-            <li>Google Ads, Meta Ads and paid campaign management</li>
-            <li>SEO fundamentals and keyword research</li>
-            <li>Marketing analytics and reporting dashboards</li>
-            <li>Live campaign run for a real partner brand</li>
-          </ul>
-          <h4>Programme Details</h4>
-          <div class="course-detail-row"><span class="label">Duration</span><span class="val">3 Months (Full-Time)</span></div>
-          <div class="course-detail-row"><span class="label">Format</span><span class="val">Online</span></div>
-          <div class="course-detail-row"><span class="label">Tuition</span><span class="val">KES 95,000</span></div>
-          <div class="course-detail-row"><span class="label">Next Intake</span><span class="val">7 July 2026</span></div>
-          <div class="course-detail-row"><span class="label">Certification</span><span class="val">EduTech Digital Marketing Cert.</span></div>
-          <button class="course-apply-btn" onclick="event.stopPropagation(); showToast('Application started for Digital Marketing & SEO!')">Apply for This Course</button>
-        </div>
-      </div>
-    </div>
+    <p class="loading-text">Loading courses…</p>
   </div>
 </section>
 
@@ -1023,99 +736,40 @@
 <section id="events">
   <div class="section-eyebrow">What's On</div>
   <div class="section-title">Upcoming Events</div>
-  <p class="section-sub">Stay updated with intakes, ceremonies, and career opportunities at EduTech Institute. Tap an event for full details.</p>
+  <p class="section-sub">Stay updated with intakes, ceremonies, and career opportunities at EduTech Institute.</p>
 
-  <div class="events-list reveal" id="eventsList">
-    <div class="event-item" data-event="0">
-      <div class="event-item-head">
-        <div class="event-date"><div class="event-day">07</div><div class="event-month">Jul 2026</div></div>
-        <div class="event-info">
-          <h4>January Intake – Applications Open</h4>
-          <p>Applications for the January 2027 cohort are now open. All programmes available.</p>
-        </div>
-        <span class="event-badge open-badge">Open Now</span>
-        <div class="event-chevron">▼</div>
+  <div class="events-list reveal">
+    <div class="event-item">
+      <div class="event-date"><div class="event-day">07</div><div class="event-month">Jul 2026</div></div>
+      <div class="event-info">
+        <h4>January Intake – Applications Open</h4>
+        <p>Applications for the January 2027 cohort are now open. All programmes available.</p>
       </div>
-      <div class="event-details">
-        <div class="event-details-inner">
-          <p class="event-desc">Applications are open for the January 2027 cohort across all EduTech Institute programmes. Early applicants get priority placement in their preferred class schedule and access to early-bird tuition rates. Submit your application online or visit our Upper Hill campus to speak with an admissions advisor.</p>
-          <div class="event-detail-row"><span class="label">Date</span><span class="val">Opens 7 July 2026</span></div>
-          <div class="event-detail-row"><span class="label">Deadline</span><span class="val">15 December 2026</span></div>
-          <div class="event-detail-row"><span class="label">Location</span><span class="val">Online &amp; Upper Hill Campus</span></div>
-          <div class="event-detail-row"><span class="label">Who Can Apply</span><span class="val">All prospective students</span></div>
-          <div class="event-detail-row"><span class="label">Requirements</span><span class="val">ID/Passport, KCSE Certificate</span></div>
-          <button class="event-rsvp-btn" onclick="event.stopPropagation(); showToast('Starting your application for January Intake!')">Start Application</button>
-        </div>
-      </div>
+      <span class="event-badge open">Open Now</span>
     </div>
-
-    <div class="event-item" data-event="1">
-      <div class="event-item-head">
-        <div class="event-date"><div class="event-day">19</div><div class="event-month">Jul 2026</div></div>
-        <div class="event-info">
-          <h4>Annual Career Fair 2026</h4>
-          <p>Meet hiring managers from Safaricom, KCB, Equity Bank and 20+ employers. On campus.</p>
-        </div>
-        <span class="event-badge upcoming">Upcoming</span>
-        <div class="event-chevron">▼</div>
+    <div class="event-item">
+      <div class="event-date"><div class="event-day">19</div><div class="event-month">Jul 2026</div></div>
+      <div class="event-info">
+        <h4>Annual Career Fair 2026</h4>
+        <p>Meet hiring managers from Safaricom, KCB, Equity Bank and 20+ employers. On campus.</p>
       </div>
-      <div class="event-details">
-        <div class="event-details-inner">
-          <p class="event-desc">Our biggest recruitment event of the year. Meet hiring managers and recruiters from Safaricom, KCB Group, Equity Bank, Microsoft Kenya, Jumia and over 20 other partner employers. Bring printed copies of your CV and dress in business attire — many attendees receive on-the-spot interview invitations.</p>
-          <div class="event-detail-row"><span class="label">Date</span><span class="val">19 July 2026, 9:00 AM – 4:00 PM</span></div>
-          <div class="event-detail-row"><span class="label">Location</span><span class="val">EduTech Institute Main Hall, Upper Hill</span></div>
-          <div class="event-detail-row"><span class="label">Who Should Attend</span><span class="val">Current students &amp; alumni</span></div>
-          <div class="event-detail-row"><span class="label">What to Bring</span><span class="val">Printed CV, Student ID</span></div>
-          <div class="event-detail-row"><span class="label">Entry</span><span class="val">Free</span></div>
-          <button class="event-rsvp-btn" onclick="event.stopPropagation(); showToast('You\'re registered for the Career Fair!')">RSVP to This Event</button>
-        </div>
-      </div>
+      <span class="event-badge upcoming">Upcoming</span>
     </div>
-
-    <div class="event-item" data-event="2">
-      <div class="event-item-head">
-        <div class="event-date"><div class="event-day">02</div><div class="event-month">Aug 2026</div></div>
-        <div class="event-info">
-          <h4>AI &amp; Robotics Skills Workshop</h4>
-          <p>Hands-on 2-day workshop for current students and the public. Certificate of participation awarded.</p>
-        </div>
-        <span class="event-badge upcoming">Upcoming</span>
-        <div class="event-chevron">▼</div>
+    <div class="event-item">
+      <div class="event-date"><div class="event-day">02</div><div class="event-month">Aug 2026</div></div>
+      <div class="event-info">
+        <h4>AI &amp; Robotics Skills Workshop</h4>
+        <p>Hands-on 2-day workshop for current students and the public. Certificate of participation awarded.</p>
       </div>
-      <div class="event-details">
-        <div class="event-details-inner">
-          <p class="event-desc">A hands-on, two-day intensive covering practical AI applications and robotics fundamentals. Led by our AI &amp; Software Engineering faculty in the Innovation Lab. Open to enrolled students and members of the public — no prior experience required. All participants receive a certificate of participation.</p>
-          <div class="event-detail-row"><span class="label">Date</span><span class="val">2–3 August 2026, 9:00 AM – 3:00 PM</span></div>
-          <div class="event-detail-row"><span class="label">Location</span><span class="val">Innovation Lab, Upper Hill Campus</span></div>
-          <div class="event-detail-row"><span class="label">Fee</span><span class="val">KES 3,500 (Students free)</span></div>
-          <div class="event-detail-row"><span class="label">Capacity</span><span class="val">40 seats</span></div>
-          <div class="event-detail-row"><span class="label">Includes</span><span class="val">Materials, lunch, certificate</span></div>
-          <button class="event-rsvp-btn" onclick="event.stopPropagation(); showToast('You\'re registered for the AI & Robotics Workshop!')">RSVP to This Event</button>
-        </div>
-      </div>
+      <span class="event-badge upcoming">Upcoming</span>
     </div>
-
-    <div class="event-item" data-event="3">
-      <div class="event-item-head">
-        <div class="event-date"><div class="event-day">15</div><div class="event-month">Aug 2026</div></div>
-        <div class="event-info">
-          <h4>2026 Graduation Ceremony</h4>
-          <p>Celebrating the Class of 2026. Families welcome. KICC, Nairobi — 10:00 AM.</p>
-        </div>
-        <span class="event-badge upcoming">Save the Date</span>
-        <div class="event-chevron">▼</div>
+    <div class="event-item">
+      <div class="event-date"><div class="event-day">15</div><div class="event-month">Aug 2026</div></div>
+      <div class="event-info">
+        <h4>2026 Graduation Ceremony</h4>
+        <p>Celebrating the Class of 2026. Families welcome. KICC, Nairobi — 10:00 AM.</p>
       </div>
-      <div class="event-details">
-        <div class="event-details-inner">
-          <p class="event-desc">Join us as we celebrate the achievements of the Class of 2026. Graduates across all programmes — Software Engineering, Data Science, AI &amp; ML, Cybersecurity, Mobile Development and Digital Marketing — will receive their certificates on stage. Families and friends are warmly welcome to attend.</p>
-          <div class="event-detail-row"><span class="label">Date</span><span class="val">15 August 2026, 10:00 AM</span></div>
-          <div class="event-detail-row"><span class="label">Location</span><span class="val">KICC, Nairobi</span></div>
-          <div class="event-detail-row"><span class="label">Dress Code</span><span class="val">Graduation gown provided / Smart formal</span></div>
-          <div class="event-detail-row"><span class="label">Guest Tickets</span><span class="val">Up to 4 per graduate</span></div>
-          <div class="event-detail-row"><span class="label">Entry</span><span class="val">Free, ticket required</span></div>
-          <button class="event-rsvp-btn" onclick="event.stopPropagation(); showToast('Graduation tickets reserved!')">Reserve Guest Tickets</button>
-        </div>
-      </div>
+      <span class="event-badge upcoming">Save the Date</span>
     </div>
   </div>
 </section>
@@ -1180,53 +834,56 @@
   <div class="jobs-wrapper reveal">
     <div class="job-box">
       <h3>📄 Upload Your CV</h3>
-      <div class="upload-area" onclick="document.getElementById('cvInput').click()">
-        <div class="upload-icon">⬆️</div>
-        <div class="upload-text"><strong>Click to upload</strong> or drag and drop<br>PDF, DOC, DOCX — max 5MB</div>
-      </div>
-      <input type="file" id="cvInput" accept=".pdf,.doc,.docx" style="display:none" onchange="handleUpload(this)">
-      <div id="uploadStatus" style="font-size:0.82rem;color:var(--teal);margin-top:0.5rem;display:none">✅ CV uploaded successfully!</div>
-      <div class="form-group" style="margin-top:1rem">
-        <label>Full Name</label>
-        <input type="text" placeholder="Your full name">
-      </div>
-      <div class="form-group">
-        <label>Email Address</label>
-        <input type="email" placeholder="you@example.com">
-      </div>
-      <button class="btn-submit" onclick="showToast('CV submitted! Our careers team will be in touch.')">Submit CV</button>
+      <form id="cvForm">
+        <div class="upload-area" onclick="document.getElementById('cvInput').click()">
+          <div class="upload-icon">⬆️</div>
+          <div class="upload-text"><strong>Click to upload</strong> or drag and drop<br>PDF, DOC, DOCX — max 5MB</div>
+        </div>
+        <input type="file" id="cvInput" name="cv" accept=".pdf,.doc,.docx" style="display:none" onchange="handleUpload(this)">
+        <div id="uploadStatus" style="font-size:0.82rem;color:var(--teal);margin-top:0.5rem;display:none">✅ File selected: <span id="uploadFileName"></span></div>
+        <div class="form-group" style="margin-top:1rem">
+          <label>Full Name</label>
+          <input type="text" id="cvFullName" placeholder="Your full name" required>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="cvEmail" placeholder="you@example.com" required>
+        </div>
+        <button type="submit" class="btn-submit">Submit CV</button>
+      </form>
     </div>
 
     <div class="job-box">
       <h3>💼 Apply for a Role</h3>
-      <div class="form-group">
-        <label>Select Opportunity</label>
-        <select>
-          <option>Software Engineer – Safaricom PLC</option>
-          <option>Data Analyst Intern – KCB Group</option>
-          <option>Cybersecurity Analyst – Equity Bank</option>
-          <option>Mobile Developer – Jumia Kenya</option>
-          <option>Graduate Trainee – Microsoft Kenya</option>
-          <option>Software Intern – Andela Africa</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Opportunity Type</label>
-        <select>
-          <option>Full-Time Job</option>
-          <option>Internship (3 Months)</option>
-          <option>Graduate Programme</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Availability</label>
-        <input type="date">
-      </div>
-      <div class="form-group">
-        <label>Cover Note (optional)</label>
-        <textarea placeholder="A brief note about your interest..." style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:var(--font-body);font-size:0.9rem;outline:none;resize:vertical;min-height:80px;transition:border-color 0.2s"></textarea>
-      </div>
-      <button class="btn-submit" onclick="showToast('Application submitted! You\'ll hear back within 5 business days.')">Submit Application</button>
+      <form id="applyForm">
+        <div class="form-group">
+          <label>Select Opportunity</label>
+          <select id="applyOpportunity" required>
+            <option value="">Loading opportunities…</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="applyFullName" placeholder="Your full name" required>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" id="applyEmail" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label>Availability</label>
+          <input type="date" id="applyAvailability">
+        </div>
+        <div class="form-group">
+          <label>Cover Note (optional)</label>
+          <textarea id="applyCoverNote" placeholder="A brief note about your interest..." style="width:100%;padding:10px 14px;background:rgba(255,255,255,0.05);border:1px solid var(--border);border-radius:6px;color:var(--white);font-family:var(--font-body);font-size:0.9rem;outline:none;resize:vertical;min-height:80px;transition:border-color 0.2s"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Attach CV (optional)</label>
+          <input type="file" id="applyCvInput" accept=".pdf,.doc,.docx">
+        </div>
+        <button type="submit" class="btn-submit">Submit Application</button>
+      </form>
     </div>
   </div>
 </section>
@@ -1239,17 +896,51 @@
   <div class="section-title">Your Student Dashboard</div>
   <p class="section-sub">Access fees, results, timetables, and course materials all in one place.</p>
 
-  <div class="portal-login">
+  <div class="portal-login" id="portalLoginBox">
     <h3>🔐 Student Login</h3>
-    <div class="form-group">
-      <label>Student ID</label>
-      <input type="text" placeholder="e.g. EDT-2025-001">
+    <div class="portal-toggle">
+      <button type="button" id="toggleLogin" class="active" onclick="switchPortalMode('login')">Log In</button>
+      <button type="button" id="toggleRegister" onclick="switchPortalMode('register')">Register</button>
     </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" placeholder="••••••••">
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label>Student ID or Email</label>
+        <input type="text" id="loginIdentifier" placeholder="e.g. EDT-2025-001 or you@email.com" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="loginPassword" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn-submit">Log In to Portal</button>
+    </form>
+
+    <form id="registerForm" style="display:none">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="regFullName" placeholder="Your full name" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="regEmail" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label>Phone (optional)</label>
+        <input type="tel" id="regPhone" placeholder="+254 ...">
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="regPassword" placeholder="At least 6 characters" required>
+      </div>
+      <button type="submit" class="btn-submit">Create Account</button>
+    </form>
+  </div>
+
+  <div class="portal-login" id="portalLoggedInBox" style="display:none">
+    <div class="portal-loggedin">
+      <p>Logged in as <strong id="loggedInName"></strong></p>
+      <button type="button" class="btn-submit" style="background:transparent;border:1px solid var(--border);color:var(--white)" onclick="logout()">Log Out</button>
     </div>
-    <button class="btn-submit" onclick="showToast('Logging you in...')">Log In to Portal</button>
   </div>
 
   <div class="portal-grid reveal">
@@ -1323,33 +1014,35 @@
 
     <div class="contact-form reveal">
       <h3>Send Us a Message</h3>
-      <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" placeholder="Your full name">
-      </div>
-      <div class="form-group">
-        <label>Email</label>
-        <input type="email" placeholder="you@example.com">
-      </div>
-      <div class="form-group">
-        <label>Phone (optional)</label>
-        <input type="tel" placeholder="+254 ...">
-      </div>
-      <div class="form-group">
-        <label>What are you enquiring about?</label>
-        <select>
-          <option>Admissions</option>
-          <option>Course Information</option>
-          <option>Fees &amp; Scholarships</option>
-          <option>Career Partnerships</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Message</label>
-        <textarea placeholder="Tell us how we can help you..."></textarea>
-      </div>
-      <button class="btn-submit" onclick="showToast('Message sent! We\'ll respond within 24 hours.')">Send Message</button>
+      <form id="contactForm">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="contactFullName" placeholder="Your full name" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="contactEmail" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+          <label>Phone (optional)</label>
+          <input type="tel" id="contactPhone" placeholder="+254 ...">
+        </div>
+        <div class="form-group">
+          <label>What are you enquiring about?</label>
+          <select id="contactSubject">
+            <option>Admissions</option>
+            <option>Course Information</option>
+            <option>Fees &amp; Scholarships</option>
+            <option>Career Partnerships</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea id="contactMessage" placeholder="Tell us how we can help you..." required></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Send Message</button>
+      </form>
     </div>
   </div>
 </section>
@@ -1405,13 +1098,18 @@
 <div id="toast" style="position:fixed;bottom:2rem;right:2rem;background:var(--teal);color:var(--navy);padding:12px 22px;border-radius:8px;font-family:var(--font-display);font-weight:700;font-size:0.88rem;z-index:9999;transform:translateY(80px);opacity:0;transition:all 0.3s;max-width:320px;box-shadow:0 8px 30px rgba(0,0,0,0.4)"></div>
 
 <script>
-  // Nav scroll
+  // ════════════════════════════════════════════════════════
+  // API CONFIG — point this at your running backend
+  // ════════════════════════════════════════════════════════
+  const API_BASE = 'http://localhost:5000/api';
+
+  // ── Nav scroll ──
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 40);
   });
 
-  // Hamburger
+  // ── Hamburger ──
   function toggleMenu() {
     document.getElementById('navLinks').classList.toggle('open');
   }
@@ -1419,7 +1117,7 @@
     a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
   });
 
-  // Counter animation
+  // ── Counter animation ──
   function animateCounter(id, target, suffix='') {
     const el = document.getElementById(id);
     if (!el) return;
@@ -1444,56 +1142,342 @@
   });
   heroObserver.observe(document.querySelector('.hero-stats'));
 
-  // Scroll reveal
+  // ── Scroll reveal ──
   const revealEls = document.querySelectorAll('.reveal');
   const revealObserver = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
   }, { threshold: 0.1 });
   revealEls.forEach(el => revealObserver.observe(el));
 
-  // Toast
-  function showToast(msg) {
+  // ── Toast ──
+  function showToast(msg, isError = false) {
     const t = document.getElementById('toast');
     t.textContent = msg;
+    t.style.background = isError ? '#f87171' : 'var(--teal)';
     t.style.transform = 'translateY(0)';
     t.style.opacity = '1';
-    setTimeout(() => { t.style.transform = 'translateY(80px)'; t.style.opacity = '0'; }, 3000);
+    setTimeout(() => { t.style.transform = 'translateY(80px)'; t.style.opacity = '0'; }, 3500);
   }
 
-  // CV upload
+  // ── Auth token helpers ──
+  function getToken() { return localStorage.getItem('edutech_token'); }
+  function setToken(t) { localStorage.setItem('edutech_token', t); }
+  function clearToken() { localStorage.removeItem('edutech_token'); }
+  function getUser() {
+    const u = localStorage.getItem('edutech_user');
+    return u ? JSON.parse(u) : null;
+  }
+  function setUser(u) { localStorage.setItem('edutech_user', JSON.stringify(u)); }
+  function clearUser() { localStorage.removeItem('edutech_user'); }
+
+  function authHeaders() {
+    const token = getToken();
+    return token ? { 'Authorization': 'Bearer ' + token } : {};
+  }
+
+  // ════════════════════════════════════════════════════════
+  // COURSES — fetch from backend and render
+  // ════════════════════════════════════════════════════════
+  async function loadCourses() {
+    const grid = document.getElementById('coursesGrid');
+    try {
+      const res = await fetch(`${API_BASE}/courses`);
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message);
+
+      grid.innerHTML = data.courses.map(course => `
+        <div class="course-card">
+          <div class="course-icon">${course.icon || '📘'}</div>
+          <span class="course-tag">${course.category}</span>
+          <h3>${course.title}</h3>
+          <p>${course.description || ''}</p>
+          <div class="course-meta">
+            <span>⏱ ${course.duration || 'TBD'}</span>
+            <span>📍 ${course.delivery_mode || 'TBD'}</span>
+          </div>
+          <button class="course-enrol-btn" onclick="enrolInCourse(${course.id}, event)">Enrol Now</button>
+        </div>
+      `).join('');
+    } catch (err) {
+      grid.innerHTML = `<p class="error-text">Could not load courses. Is the backend running at ${API_BASE}?</p>`;
+      console.error(err);
+    }
+  }
+
+  async function enrolInCourse(courseId, event) {
+    event.stopPropagation();
+    const token = getToken();
+    if (!token) {
+      showToast('Please log in to the Student Portal first.', true);
+      document.getElementById('portal').scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
+    try {
+      const res = await fetch(`${API_BASE}/courses/${courseId}/enrol`, {
+        method: 'POST',
+        headers: { ...authHeaders() }
+      });
+      const data = await res.json();
+      showToast(data.message, !data.success);
+    } catch (err) {
+      showToast('Could not process enrolment. Please try again.', true);
+      console.error(err);
+    }
+  }
+
+  // ════════════════════════════════════════════════════════
+  // JOB OPPORTUNITIES — populate the dropdown
+  // ════════════════════════════════════════════════════════
+  async function loadOpportunities() {
+    const select = document.getElementById('applyOpportunity');
+    try {
+      const res = await fetch(`${API_BASE}/jobs`);
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message);
+
+      select.innerHTML = data.opportunities.map(op =>
+        `<option value="${op.id}">${op.title} – ${op.employer}</option>`
+      ).join('');
+    } catch (err) {
+      select.innerHTML = `<option value="">Could not load opportunities</option>`;
+      console.error(err);
+    }
+  }
+
+  // ════════════════════════════════════════════════════════
+  // CV UPLOAD
+  // ════════════════════════════════════════════════════════
   function handleUpload(input) {
     if (input.files.length > 0) {
+      document.getElementById('uploadFileName').textContent = input.files[0].name;
       document.getElementById('uploadStatus').style.display = 'block';
     }
   }
 
-  // ── COURSE ACCORDION ──
-  // Clicking a course card toggles its details panel open/closed.
-  // Clicking the same card again (while open) closes it.
-  document.querySelectorAll('.course-card').forEach(card => {
-    card.addEventListener('click', () => {
-      const isOpen = card.classList.contains('open');
-      // Close all other open course cards first
-      document.querySelectorAll('.course-card.open').forEach(other => {
-        if (other !== card) other.classList.remove('open');
+  document.getElementById('cvForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const fileInput = document.getElementById('cvInput');
+    const fullName = document.getElementById('cvFullName').value.trim();
+    const email = document.getElementById('cvEmail').value.trim();
+
+    if (!fileInput.files.length) {
+      showToast('Please attach a CV file first.', true);
+      return;
+    }
+
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Uploading...';
+
+    try {
+      const formData = new FormData();
+      formData.append('cv', fileInput.files[0]);
+      formData.append('fullName', fullName);
+      formData.append('email', email);
+
+      const res = await fetch(`${API_BASE}/jobs/upload-cv`, {
+        method: 'POST',
+        headers: { ...authHeaders() }, // don't set Content-Type, browser sets multipart boundary
+        body: formData
       });
-      // Toggle this one
-      card.classList.toggle('open', !isOpen);
-    });
+      const data = await res.json();
+      showToast(data.message, !data.success);
+      if (data.success) {
+        e.target.reset();
+        document.getElementById('uploadStatus').style.display = 'none';
+      }
+    } catch (err) {
+      showToast('Could not upload your CV. Please try again.', true);
+      console.error(err);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit CV';
+    }
   });
 
-  // ── EVENT ACCORDION ──
-  // Clicking an event item toggles its details panel open/closed.
-  // Clicking the same event again (while open) closes it.
-  document.querySelectorAll('.event-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.event-item.open').forEach(other => {
-        if (other !== item) other.classList.remove('open');
+  // ════════════════════════════════════════════════════════
+  // JOB APPLICATION
+  // ════════════════════════════════════════════════════════
+  document.getElementById('applyForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const opportunityId = document.getElementById('applyOpportunity').value;
+    const fullName = document.getElementById('applyFullName').value.trim();
+    const email = document.getElementById('applyEmail').value.trim();
+    const availabilityDate = document.getElementById('applyAvailability').value;
+    const coverNote = document.getElementById('applyCoverNote').value.trim();
+    const cvFile = document.getElementById('applyCvInput').files[0];
+
+    if (!opportunityId) {
+      showToast('Please select an opportunity.', true);
+      return;
+    }
+
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Submitting...';
+
+    try {
+      const formData = new FormData();
+      formData.append('fullName', fullName);
+      formData.append('email', email);
+      if (availabilityDate) formData.append('availabilityDate', availabilityDate);
+      if (coverNote) formData.append('coverNote', coverNote);
+      if (cvFile) formData.append('cv', cvFile);
+
+      const res = await fetch(`${API_BASE}/jobs/${opportunityId}/apply`, {
+        method: 'POST',
+        headers: { ...authHeaders() },
+        body: formData
       });
-      item.classList.toggle('open', !isOpen);
-    });
+      const data = await res.json();
+      showToast(data.message, !data.success);
+      if (data.success) e.target.reset();
+    } catch (err) {
+      showToast('Could not submit your application. Please try again.', true);
+      console.error(err);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Application';
+    }
   });
+
+  // ════════════════════════════════════════════════════════
+  // STUDENT PORTAL — login / register / logout
+  // ════════════════════════════════════════════════════════
+  function switchPortalMode(mode) {
+    document.getElementById('toggleLogin').classList.toggle('active', mode === 'login');
+    document.getElementById('toggleRegister').classList.toggle('active', mode === 'register');
+    document.getElementById('loginForm').style.display = mode === 'login' ? 'block' : 'none';
+    document.getElementById('registerForm').style.display = mode === 'register' ? 'block' : 'none';
+  }
+
+  function renderPortalAuthState() {
+    const user = getUser();
+    const loginBox = document.getElementById('portalLoginBox');
+    const loggedInBox = document.getElementById('portalLoggedInBox');
+    if (user) {
+      loginBox.style.display = 'none';
+      loggedInBox.style.display = 'block';
+      document.getElementById('loggedInName').textContent = `${user.full_name} (${user.student_id || user.email})`;
+    } else {
+      loginBox.style.display = 'block';
+      loggedInBox.style.display = 'none';
+    }
+  }
+
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const identifier = document.getElementById('loginIdentifier').value.trim();
+    const password = document.getElementById('loginPassword').value;
+
+    const isEmail = identifier.includes('@');
+    const body = isEmail
+      ? { email: identifier, password }
+      : { studentId: identifier, password };
+
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Logging in...';
+
+    try {
+      const res = await fetch(`${API_BASE}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      const data = await res.json();
+      if (data.success) {
+        setToken(data.token);
+        setUser(data.user);
+        renderPortalAuthState();
+      }
+      showToast(data.message, !data.success);
+    } catch (err) {
+      showToast('Could not log in. Please try again.', true);
+      console.error(err);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Log In to Portal';
+    }
+  });
+
+  document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const fullName = document.getElementById('regFullName').value.trim();
+    const email = document.getElementById('regEmail').value.trim();
+    const phone = document.getElementById('regPhone').value.trim();
+    const password = document.getElementById('regPassword').value;
+
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Creating account...';
+
+    try {
+      const res = await fetch(`${API_BASE}/auth/register`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fullName, email, phone, password })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setToken(data.token);
+        setUser(data.user);
+        renderPortalAuthState();
+      }
+      showToast(data.message, !data.success);
+    } catch (err) {
+      showToast('Could not create your account. Please try again.', true);
+      console.error(err);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Create Account';
+    }
+  });
+
+  function logout() {
+    clearToken();
+    clearUser();
+    renderPortalAuthState();
+    showToast('Logged out.');
+  }
+
+  // ════════════════════════════════════════════════════════
+  // CONTACT FORM
+  // ════════════════════════════════════════════════════════
+  document.getElementById('contactForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const fullName = document.getElementById('contactFullName').value.trim();
+    const email = document.getElementById('contactEmail').value.trim();
+    const phone = document.getElementById('contactPhone').value.trim();
+    const subject = document.getElementById('contactSubject').value;
+    const message = document.getElementById('contactMessage').value.trim();
+
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    try {
+      const res = await fetch(`${API_BASE}/contact`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ fullName, email, phone, subject, message })
+      });
+      const data = await res.json();
+      showToast(data.message, !data.success);
+      if (data.success) e.target.reset();
+    } catch (err) {
+      showToast('Could not send your message. Please try again.', true);
+      console.error(err);
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Message';
+    }
+  });
+
+  // ── Init ──
+  loadCourses();
+  loadOpportunities();
+  renderPortalAuthState();
 </script>
 </body>
 </html>
